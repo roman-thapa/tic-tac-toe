@@ -1,0 +1,17 @@
+* {
+    text-align: center;
+}
+
+.gridContainer {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: center;
+}
+
+.grid {
+    margin: rem;
+    padding: 2rem;
+    height: 1rem;
+    width: 1rem;
+    border: 1px solid #212A3E;
+}
