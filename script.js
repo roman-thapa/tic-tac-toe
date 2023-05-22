@@ -4,17 +4,14 @@ const winningArray = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3,
 
 function compareArray(playerMove, winningMove) {
   for (let i = 0; i <= playerMove.length - 3; i++) {
-    const replacedArray = playerMove.slice();  // Create a copy of the given array
-    const replacedElements = replacedArray.splice(i, 3);  // Remove and store the replaced elements
+    const replacedArray = playerMove.slice(); 
+    const replacedElements = replacedArray.splice(i, 3); 
 
-    // Iterate through each set of three elements in the provided array
     for (let j = 0; j < winningMove.length; j++) {
       const currentSet = winningMove[j];
 
-      // Compare the elements
       if (arraysEqual(replacedElements, currentSet)) {
        console.log(`Match found: [${replacedElements}] matches [${currentSet}]`);
-      // Perform any necessary actions when a match is found
       }
     }
   }
