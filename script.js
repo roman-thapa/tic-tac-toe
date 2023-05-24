@@ -4,16 +4,16 @@ const winningArray = [
   [1, 5, 9], [3, 5, 7]
 ];
 
-let playerOne = [2, 4, 7, 5];
+let playerOne = [];
+let playerTwo = [];
 
 const sortMove = function(move) {
   const temp = move.slice();
   temp.sort();
   return temp;
-}
+};
 
 const setOfPlayerMove = function(playerMove) {
-  console.log(playerMove)
   const setOfMove = [];
   const len = playerMove.length;
   for (let i = 0; i < len - 2; i++) {
@@ -43,7 +43,7 @@ const gameLogic = function(player, winCondition) {
     }
   }
   return "";
-}
+};
 
 const arraysEqual = function(array1, array2) {
   for (let i = 0; i < array1.length; i++) {
@@ -51,7 +51,6 @@ const arraysEqual = function(array1, array2) {
       return false;
     }
   }
-  
   return true;
 };
 
@@ -60,4 +59,4 @@ let gameBegin = function (player, conditionTowin) {
   const playerMoveSet = setOfPlayerMove(sortedMove);
   const gameResult = gameLogic(playerMoveSet, conditionTowin);
   return gameResult;
-}
+};
