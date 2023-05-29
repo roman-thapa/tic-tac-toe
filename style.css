@@ -15,3 +15,11 @@
     width: 1rem;
     border: 1px solid #212A3E;
 }
+
+.info {
+    display: flex;
+    justify-content: space-around;
+    font-size: large;
+    font-weight: bolder;
+    padding: 2rem;
+}

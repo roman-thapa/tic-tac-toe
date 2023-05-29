@@ -6,6 +6,7 @@ const winningArray = [
 
 let playerOne = [];
 let playerTwo = [];
+let count = 1;
 
 const sortMove = function(move) {
   const temp = move.slice();
@@ -47,16 +48,54 @@ const gameLogic = function(player, winCondition) {
 
 const arraysEqual = function(array1, array2) {
   for (let i = 0; i < array1.length; i++) {
-    if (array1[i] !== array2[i]) {
+    if (array1[i] != array2[i]) {
       return false;
     }
   }
   return true;
 };
 
-let gameBegin = function (player, conditionTowin) {
+const gameBegin = function (player, conditionTowin) {
   const sortedMove = sortMove(player);
   const playerMoveSet = setOfPlayerMove(sortedMove);
-  const gameResult = gameLogic(playerMoveSet, conditionTowin);
-  return gameResult;
+  return  gameLogic(playerMoveSet, conditionTowin);
 };
+
+const updateDOM = function(move, count) {
+  if(count%2 === 1) {
+    updateMove(playerOne, move);
+    lengthChecker(playerOne);
+    return "O";
+  } else {
+    updateMove(playerTwo, move);
+    lengthChecker(playerTwo);
+    return "X";
+  }
+}
+
+const updateMove = function (player, move) {
+  player.push(move);
+}
+
+const lengthChecker = function (player) {
+  if (player.length >= 3) {
+    const win = gameBegin(player, winningArray);
+    if(win) {
+      console.log(player, win);
+    }
+  }
+}
+
+const moves = document.querySelectorAll('.grid');
+
+moves.forEach(box => {
+    box.addEventListener('click', () => {
+      if (box.innerText === "") {
+        box.innerText = updateDOM(box.id, count);
+        count++;
+      } else {
+        box.off();
+      }
+      
+    });
+});
