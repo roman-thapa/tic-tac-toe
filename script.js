@@ -133,13 +133,14 @@ const gameOver = function(boxes) {
 }
 
 const resetAll = function () {
-  console.log("clicked")
   playerOne = [];
   playerTwo = [];
   win = false;
+  count = 1;
   moves.forEach(box => {
     box.innerText = "";
     box.style.backgroundColor = "#F6F1F1";
+    box.style.fontWeight = "normal";
   }); 
   info.removeChild(finalVerdic);
   info.removeChild(reset);
