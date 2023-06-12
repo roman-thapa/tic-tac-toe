@@ -7,6 +7,62 @@ const winningArray = [
 let playerOne = [];
 let playerTwo = [];
 let count = 1;
+let win = false;
+const info = document.querySelector("#info");
+const finalVerdic = document.createElement("div");
+const moves = document.querySelectorAll('.grid');
+const reset = document.createElement("button");
+
+moves.forEach(box => {
+  box.addEventListener('click', () => {
+    if (box.innerText === "" && win === false) {
+      box.innerText = updateDOM(box.id, count);
+      count++;
+    } else {
+      box.off();
+    }
+  });
+});
+
+const updateDOM = function(move, count) {
+  if(count%2 === 1) {
+    updateMove(playerOne, move);
+    lengthChecker(playerOne);
+    return "O";
+  } else {
+    updateMove(playerTwo, move);
+    lengthChecker(playerTwo);
+    return "X";
+  }
+}
+
+const updateMove = function (player, move) {
+  player.push(move);
+}
+
+const lengthChecker = function (player) {
+  if (player.length >= 3) {
+    const win = gameBegin(player, winningArray);
+    if(win) {
+      gameOver(win);
+    }
+  }
+  if (win === false 
+    && playerOne.length === 5
+    && playerTwo.length === 4) {
+      finalVerdic.innerText = "It's a draw";
+      info.append(finalVerdic);
+      reset.innerText = "Reset";
+      reset.onclick = resetAll;
+      info.append(reset);
+    }
+}
+
+const gameBegin = function (player, conditionTowin) {
+  const sortedMove = sortMove(player);
+  const playerMoveSet = setOfPlayerMove(sortedMove);
+  return  gameLogic(playerMoveSet, conditionTowin);
+};
 
 const sortMove = function(move) {
   const temp = move.slice();
@@ -55,47 +111,36 @@ const arraysEqual = function(array1, array2) {
   return true;
 };
 
-const gameBegin = function (player, conditionTowin) {
-  const sortedMove = sortMove(player);
-  const playerMoveSet = setOfPlayerMove(sortedMove);
-  return  gameLogic(playerMoveSet, conditionTowin);
-};
-
-const updateDOM = function(move, count) {
+const gameOver = function(boxes) {
+  win = true;
   if(count%2 === 1) {
-    updateMove(playerOne, move);
-    lengthChecker(playerOne);
-    return "O";
+    finalVerdic.innerText = "Player One won";
+    info.append(finalVerdic);
+    reset.innerText = "Reset";
+    reset.onclick = resetAll;
+    info.append(reset);
   } else {
-    updateMove(playerTwo, move);
-    lengthChecker(playerTwo);
-    return "X";
+    finalVerdic.innerText = "Player Two won";
+    info.append(finalVerdic);
+    reset.innerText = "Reset";
+    reset.onclick = resetAll;
+    info.append(reset);
+  }
+  for(let i=0; i<boxes.length; i++) {
+    moves[boxes[i]-1].style.backgroundColor = 'lightgreen';
+    moves[boxes[i]-1].style.fontWeight = 'bolder';
   }
 }
 
-const updateMove = function (player, move) {
-  player.push(move);
+const resetAll = function () {
+  console.log("clicked")
+  playerOne = [];
+  playerTwo = [];
+  win = false;
+  moves.forEach(box => {
+    box.innerText = "";
+    box.style.backgroundColor = "#F6F1F1";
+  }); 
+  info.removeChild(finalVerdic);
+  info.removeChild(reset);
 }
-
-const lengthChecker = function (player) {
-  if (player.length >= 3) {
-    const win = gameBegin(player, winningArray);
-    if(win) {
-      console.log(player, win);
-    }
-  }
-}
-
-const moves = document.querySelectorAll('.grid');
-
-moves.forEach(box => {
-    box.addEventListener('click', () => {
-      if (box.innerText === "") {
-        box.innerText = updateDOM(box.id, count);
-        count++;
-      } else {
-        box.off();
-      }
-      
-    });
-});
