@@ -1,46 +1,46 @@
 * {
-    text-align: center;
+  text-align: center;
 }
 
 .gridContainer {
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-    justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: center;
 }
 
 .grid {
-    margin: rem;
-    padding: 2rem;
-    height: 1rem;
-    width: 1rem;
-    border: 1px solid #212A3E;
-    background-color: #F6F1F1;
+  margin: rem;
+  padding: 2rem;
+  height: 1rem;
+  width: 1rem;
+  border: 1px solid #212a3e;
+  background-color: #f6f1f1;
 }
 
 .info {
-    display: flex;
-    justify-content: space-around;
-    padding: 2rem;
+  display: flex;
+  justify-content: space-around;
+  padding: 2rem;
 }
 
-#info{
-
-    font-size: large;
-    font-weight: bolder;
-    padding: 2rem;
+#info {
+  font-size: large;
+  font-weight: bolder;
+  padding: 2rem;
 }
 
-button{
-    padding:1rem 1.5rem;
-    margin:1rem 0 0;
-    font-family:'Montserrat',sans-serif;
-    border:2px solid #78788c;
-    background:0;color:#5a5a6e;
-    cursor:pointer;
-    transition:all .3s
+button {
+  padding: 1rem 1.5rem;
+  margin: 1rem 0 0;
+  font-family: "Montserrat", sans-serif;
+  border: 2px solid #78788c;
+  background: 0;
+  color: #5a5a6e;
+  cursor: pointer;
+  transition: all 0.3s;
 }
 
-button:hover{
-  background:#78788c;
-  color:#fff
+button:hover {
+  background: #78788c;
+  color: #fff;
 }
